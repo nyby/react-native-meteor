@@ -1,4 +1,5 @@
-import { NetInfo, Platform, View } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import { Platform, View } from 'react-native';
 
 import reactMixin from 'react-mixin';
 import Trackr from 'trackr';
@@ -95,13 +96,6 @@ module.exports = {
     });
 
     Data.ddp.on('connected', () => {
-      // Clear the collections of any stale data in case this is a reconnect
-      if (Data.db && Data.db.collections) {
-        for (var collection in Data.db.collections) {
-          Data.db[collection].remove({});
-        }
-      }
-
       Data.notify('change');
 
       console.info('Connected to DDP server.');
