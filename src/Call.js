@@ -6,7 +6,7 @@ export default function(eventName) {
     var callback = args.pop();
   }
 
-  const id = Data.ddp.method(eventName, args);
+  const id = Data && Data.ddp && Data.ddp.method && Data.ddp.method(eventName, args);
   Data.calls.push({
     id: id,
     callback: callback,
